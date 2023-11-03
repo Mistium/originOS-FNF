@@ -1,28 +1,41 @@
 window "show"
-window "dimensions" 500 700
-window "resizable" False
+window "dimensions" 1000 600
+
 binds = ["left arrow","down arrow","up arrow","right arrow"]
+
 def "pressed_arrow" "arrow"
-goto x_position -280
-c accent_colour
-icon arrow 3
-c #fff
+    goto x_position 280
+    c accent_colour
+    icon arrow 3
+    c #fff
 endef
+
 mainloop:
+
+scale = window_height / 500
+if window_width / 500 < window_height / 500 "scale = window_width / 500"
+
 c #333
-goto -180 -280
+loc 2 2 70 -100
 c = 0
 c #fff
 arrows = ["left-arrow","down-arrow","up-arrow","right-arrow"]
-loop 4 (
+
 c += 1
-c #222
-square 90 90 20 1
-c #fff
+
 icon arrows.[c] 3
 if binds.[c].pressed "pressed_arrow" + arrows.[c]
 change 120
-)
+icon arrows.[c] 3
+if binds.[c].pressed "pressed_arrow" + arrows.[c]
+change 120
+icon arrows.[c] 3
+if binds.[c].pressed "pressed_arrow" + arrows.[c]
+change 120
+icon arrows.[c] 3
+if binds.[c].pressed "pressed_arrow" + arrows.[c]
+change 120
+
 c #222
 loc 999 2 0 -20
 square window_width 40 10 1
